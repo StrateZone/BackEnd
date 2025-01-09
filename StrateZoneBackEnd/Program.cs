@@ -26,7 +26,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Config for Railway
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://*{port}");
+builder.WebHost.UseUrls($"http://*:{port}");
 
 //Add health check
 builder.Services.AddHealthChecks();
