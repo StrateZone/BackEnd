@@ -1,0 +1,8 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "./Dockerfile" # Assuming Dockerfile is in the root of the repository.
+
+[deploy]
+startCommand = "dotnet StrateZone_APIs.dll" # Correctly calls the published DLL.
+restartPolicyType = "always"
+healthcheckPath = "/health"

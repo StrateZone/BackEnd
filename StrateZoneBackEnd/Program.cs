@@ -19,7 +19,17 @@ PayOS payOS = new PayOS(configuration["Environment:PAYOS_CLIENT_ID"] ?? throw ne
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//*****************************************************************************************************************
 // Add services to the container.
+//*****************************************************************************************************************
+
+//Config for Railway
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*{port}");
+
+//Add health check
+builder.Services.AddHealthChecks();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -119,6 +129,8 @@ var app = builder.Build();
 //    app.UseSwagger();
 //    app.UseSwaggerUI();
 //}
+
+app.UseHealthChecks("/health");
 
 app.UseSwagger();
 app.UseSwaggerUI();
