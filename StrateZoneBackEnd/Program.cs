@@ -92,31 +92,31 @@ builder.Services.AddIdentity<User, Role>(
     .AddDefaultTokenProviders();
 */
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme =
-    options.DefaultChallengeScheme =
-    options.DefaultForbidScheme =
-    options.DefaultScheme =
-    options.DefaultSignInScheme =
-    options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = false,
-            //ValidIssuer = builder.Configuration["JWT:Issuer"],
-            ValidateAudience = false,
-            //ValidAudience = builder.Configuration["JWT:Audience"],
-            RequireExpirationTime = true,
-            ValidateIssuerSigningKey = true,
-            ClockSkew = TimeSpan.Zero,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
-                    )
-        };
-    });
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme =
+//    options.DefaultChallengeScheme =
+//    options.DefaultForbidScheme =
+//    options.DefaultScheme =
+//    options.DefaultSignInScheme =
+//    options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+//})
+//    .AddJwtBearer(options =>
+//    {
+//        options.TokenValidationParameters = new TokenValidationParameters
+//        {
+//            ValidateIssuer = false,
+//            //ValidIssuer = builder.Configuration["JWT:Issuer"],
+//            ValidateAudience = false,
+//            //ValidAudience = builder.Configuration["JWT:Audience"],
+//            RequireExpirationTime = true,
+//            ValidateIssuerSigningKey = true,
+//            ClockSkew = TimeSpan.Zero,
+//            IssuerSigningKey = new SymmetricSecurityKey(
+//                        Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
+//                    )
+//        };
+//    });
 
 // Service Extensions
 builder.Services.AddApplicationServices();
